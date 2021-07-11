@@ -8,5 +8,5 @@ public interface SystemUserService {
 	List<SystemUser> getAll();
 	void add(SystemUser systemUser);
 	void delete(int id);
-	void update(int id, SystemUser systemUser);
+	void update( SystemUser systemUser);
 }

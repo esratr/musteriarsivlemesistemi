@@ -40,12 +40,10 @@ public class SystemUserController {
 		this.systemUserService.add(systemUser);
 	}
 
-	@PutMapping("/update/{id}")
-	public void update(@PathVariable int id, @Valid @RequestBody SystemUser systemUser) {
-		this.systemUserService.update(id, systemUser);
-		systemUser.setEmail(systemUser.getEmail());
-		systemUser.setPassword(systemUser.getPassword());
-
+	@PutMapping("/update")
+	public void update (@RequestBody SystemUser systemUser) {
+		this.systemUserService.update(systemUser);
+		
 	}
 
 	@PostMapping("/delete")

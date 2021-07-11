@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.customersystem.customerarchiving.models.Customer;
 import com.customersystem.customerarchiving.models.SystemUser;
 import com.customersystem.customerarchiving.repositories.SystemUserDao;
 import com.customersystem.customerarchiving.services.abstracts.SystemUserService;
@@ -38,8 +39,21 @@ public class SystemUserManager implements SystemUserService {
 	}
 
 	@Override
-	public void update(int id,SystemUser systemUser) {
-		this.systemUserDao.save(systemUser);
+	public void update(SystemUser systemUser) {
+		SystemUser updatedSystemUser = this.systemUserDao.getById(systemUser.getId());
+		if(updatedSystemUser!=null) {
+			updatedSystemUser.setUserName(systemUser.getUserName());
+			updatedSystemUser.setUserSurname(systemUser.getUserSurname());
+			updatedSystemUser.setEmail(systemUser.getEmail());
+			updatedSystemUser.setPassword(systemUser.getPassword());
+			updatedSystemUser.setStaffNo(systemUser.getStaffNo());
+			updatedSystemUser.setDateOfBirth(systemUser.getDateOfBirth());
+			
+			
+			
+			this.systemUserDao.save(updatedSystemUser);
+		}
+	
 	}
 
 }
